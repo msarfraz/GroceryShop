@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,9 +25,8 @@ public class Order {
     Date orderDate;
 
 
-    @OneToMany
-    @JoinColumn(name="order_id")
-    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
+    private List<OrderPackage> orderItems = new ArrayList<>();
 
 
 

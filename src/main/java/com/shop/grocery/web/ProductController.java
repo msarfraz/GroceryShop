@@ -1,7 +1,6 @@
 package com.shop.grocery.web;
 
 import com.shop.grocery.api.ProductAPI;
-import com.shop.grocery.model.Package;
 import com.shop.grocery.model.Product;
 import com.shop.grocery.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

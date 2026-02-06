@@ -9,8 +9,8 @@ import lombok.*;
 @Builder
 public class OrderPackageDTO {
     String code;
-    Integer quantity;
-    Double price;
-    Integer packages;
-
+    Integer itemQuantity;
+    Double itemPrice;
+    Integer packagesQuantity;
+    Double packagesPrice;
 }

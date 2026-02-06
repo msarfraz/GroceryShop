@@ -2,6 +2,7 @@ package com.shop.grocery.api;
 
 import com.shop.grocery.dto.OrderItemDTO;
 import com.shop.grocery.dto.OrderPackageDTO;
+import com.shop.grocery.model.OrderPackage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,7 +19,7 @@ public interface OrderAPI {
             @ApiResponse(description = "Order Details", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = OrderPackageDTO.class))),
     })
     @GetMapping("/{orderId}")
-    public List<OrderPackageDTO> getOrder(@PathVariable Long orderId) ;
+    ResponseEntity<List<OrderPackageDTO>> getOrder(@PathVariable Long orderId) ;
 
     @Operation(summary = "Create a new Order", responses = {
             @ApiResponse(description = "Order Created", responseCode = "201", content = @Content(mediaType = "application/json", schema = @Schema(implementation = OrderItemDTO.class))),

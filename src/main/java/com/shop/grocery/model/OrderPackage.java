@@ -14,26 +14,28 @@ public class OrderPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
-    Integer quantity;
-    Double price;
+    Integer itemQuantity;
+    Double itemPrice;
+    Integer packagesQuantity;
+    Double packagesPrice;
+    @Column(name="order_id",insertable=false, updatable=false)
+    Long orderId;
 
     @ManyToOne
     @JoinColumn(name="code", referencedColumnName = "code")
-    private Product product;
+    Product product;
+
 
     @ManyToOne
-    @JoinColumn(name="order_item_id", referencedColumnName = "id")
-    private OrderItem orderItem;
+    Order order;
 
-    @ManyToOne
-    @JoinColumn(name="order_id", referencedColumnName = "id")
-    private Order order;
-
-    public OrderPackage(Product product, Integer quantity, Double price){
+    public OrderPackage(Product product, Integer itemQuantity,Double itemPrice, Integer packagesQuantity, Double packagesPrice){
         this.product = product;
-        this.quantity = quantity;
-        this.price = price;
+        this.itemQuantity = itemQuantity;
+        this.itemPrice = itemPrice;
+        this.packagesQuantity = packagesQuantity;
+        this.packagesPrice = packagesPrice;
+
     }
 
 

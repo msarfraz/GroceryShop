@@ -1,12 +1,7 @@
 package com.shop.grocery.service;
 
-import com.shop.grocery.dto.OrderPackageDTO;
 import com.shop.grocery.model.Product;
-import com.shop.grocery.model.Package;
-import com.shop.grocery.model.OrderItem;
 import com.shop.grocery.repository.ProductRepository;
-import com.shop.grocery.repository.OrderRepository;
-import com.shop.grocery.repository.OrderItemRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,81 +49,81 @@ public class ProductServiceTest {
 
 
     @Test
-    public void getContact_success(){
-        when(productRepository.findByCode("CE")).thenReturn(Optional.of(new Product()));
+    public void getProduct_success(){
+        when(productRepository.findByCode("ME")).thenReturn(Optional.of(new Product()));
 
-        Product product = productService.getProduct("CE");
+        Product product = productService.getProduct("ME");
 
         Assertions.assertNotNull(product);
 
     }
     @Test
-    public void getContact_notfound(){
-        when(productRepository.findByCode("CE")).thenReturn(Optional.empty());
+    public void getProduct_notfound(){
+        when(productRepository.findByCode("ME")).thenReturn(Optional.empty());
 
-        Product product = productService.getProduct("CE");
+        Product product = productService.getProduct("ME");
 
         Assertions.assertNull(product);
     }
     @Test
-    public void saveContact_success(){
+    public void saveProduct_success(){
 
-        when(productRepository.findByCode("CE")).thenReturn(Optional.empty());
-        when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "CE", "name", 10d));
+        when(productRepository.findByCode("ME")).thenReturn(Optional.empty());
+        when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "ME", "name", 10d));
 
-        Product product = productService.saveProduct(new Product(0l, "CE", "name", 10d));
+        Product product = productService.saveProduct(new Product(0L, "ME", "name", 10d));
 
         Assertions.assertNotNull(product);
         Assertions.assertEquals(1, product.getId());
 
     }
     @Test
-    public void saveContact_invalid(){
-        when(productRepository.findByCode("CE")).thenReturn(Optional.of(new Product(1l, "CE", "name", 10d)));
-       // when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "CE", "name", 10d));
+    public void saveProduct_invalid(){
+        when(productRepository.findByCode("ME")).thenReturn(Optional.of(new Product(1L, "ME", "name", 10d)));
+       // when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "ME", "name", 10d));
 
-        Product product = productService.saveProduct(new Product(1l, "CE", "name", 10d));
+        Product product = productService.saveProduct(new Product(1l, "ME", "name", 10d));
 
         Assertions.assertNull(product);
 
     }
 
     @Test
-    public void deleteContact_success(){
-        when(productRepository.findByCode("CE")).thenReturn(Optional.of(new Product(1l, "CE", "name", 10d)));
-        doNothing().when(productRepository).deleteById(1l);
+    public void deleteProduct_success(){
+        when(productRepository.findByCode("ME")).thenReturn(Optional.of(new Product(1L, "ME", "name", 10d)));
+//        doNothing().when(productRepository).deleteById(1L);
 
-        boolean result = productService.deleteProduct("CE");
+        boolean result = productService.deleteProduct("ME");
 
-        Assertions.assertEquals(true, result);
+        Assertions.assertTrue(result);
 
 
     }
     @Test
-    public void deleteContact_invalid(){
-        when(productRepository.findByCode("CE")).thenReturn(Optional.empty());
+    public void deleteProduct_invalid(){
+        when(productRepository.findByCode("ME")).thenReturn(Optional.empty());
 
-        boolean result = productService.deleteProduct("CE");
+        boolean result = productService.deleteProduct("ME");
 
-        Assertions.assertEquals(false, result);
+        Assertions.assertFalse(result);
     }
     @Test
-    public void updateContact_success(){
-        when(productRepository.findByCode("CE")).thenReturn(Optional.of(new Product(1l, "CE", "name", 10d)));
-        when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "CE", "new name", 10d));
+    public void updateProduct_success(){
+        when(productRepository.findByCode("ME")).thenReturn(Optional.of(new Product(1l, "ME", "name", 10d)));
+        when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "ME", "new name", 10d));
 
-        Product product = productService.saveProduct(new Product(0l, "CE", "new name", 10d));
+        Product product = productService.updateProduct(new Product(1l, "ME", "new name", 10d));
 
         Assertions.assertNotNull(product);
         Assertions.assertEquals(1, product.getId());
         Assertions.assertEquals("new name", product.getName());
     }
     @Test
-    public void updateContact_invalid(){
-        when(productRepository.findByCode("CE")).thenReturn(Optional.empty());
-        //when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "CE", "new name", 10d));
+    public void updateProduct_invalid(){
+        when(productRepository.findByCode("ME")).thenReturn(Optional.empty());
+        //when(productRepository.save(any(Product.class))).thenReturn(new Product(1l, "ME", "new name", 10d));
 
-        Product product = productService.saveProduct(new Product(0l, "CE", "new name", 10d));
+        Product product = productService.updateProduct(new Product(1L, "ME", "new name", 10d));
 
         Assertions.assertNull(product);
     }

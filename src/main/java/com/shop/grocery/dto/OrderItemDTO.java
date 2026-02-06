@@ -9,6 +9,4 @@ import lombok.*;
 public class OrderItemDTO {
     String code;
     Integer quantity;
-    Double price;
-
 }

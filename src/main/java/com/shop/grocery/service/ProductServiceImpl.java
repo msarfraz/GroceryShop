@@ -15,6 +15,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveProduct(Product product) {
+        var savedProduct = productRepository.findByCode(product.getCode());
+        if(savedProduct.isPresent())
+            return null;
         return productRepository.save(product);
     }
 

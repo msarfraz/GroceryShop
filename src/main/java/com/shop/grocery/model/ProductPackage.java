@@ -7,21 +7,24 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="packages")
-public class Package {
+@Table(name="product_packages")
+public class ProductPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     Integer quantity;
+    @Column(insertable=false, updatable=false)
+    String code;
     Double price;
 
     @ManyToOne
-    @JoinColumn(name="code", referencedColumnName = "code")
-    private Product product;
+    @JoinColumn(name="code", referencedColumnName = "Code")
+    Product product;
 
-    public Package(Integer quantity, Double price, Product product) {
+    public ProductPackage(Integer quantity, Double price, Product product) {
         this.quantity = quantity;
         this.price = price;
         this.product = product;
+
     }
 }

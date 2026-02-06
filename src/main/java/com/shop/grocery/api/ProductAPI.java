@@ -1,7 +1,5 @@
 package com.shop.grocery.api;
 
-import com.shop.grocery.dto.OrderItemDTO;
-import com.shop.grocery.model.Package;
 import com.shop.grocery.model.Product;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,7 +25,7 @@ public interface ProductAPI {
     @PatchMapping
     ResponseEntity<Product> updateProduct(@RequestBody Product product);
 
-    @Operation(summary = "Get a Product by id", responses = {
+    @Operation(summary = "Get a Product by code", responses = {
             @ApiResponse(description = "Product Details", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Product.class))),
     })
     @GetMapping("/{code}")
@@ -43,7 +41,7 @@ public interface ProductAPI {
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() ;
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{code}")
     public ResponseEntity<Product> deleteProduct(
             @Parameter(description = "Product code")
             @PathVariable(

@@ -1,0 +1,37 @@
+[
+  {
+    "code": "CE",
+    "itemQuantity": 5,
+    "itemPrice": 20.95,
+    "packagesQuantity": 2,
+    "packagesPrice": 41.9
+  },
+  {
+    "code": "HM",
+    "itemQuantity": 8,
+    "itemPrice": 40.95,
+    "packagesQuantity": 1,
+    "packagesPrice": 40.95
+  },
+  {
+    "code": "HM",
+    "itemQuantity": 5,
+    "itemPrice": 29.95,
+    "packagesQuantity": 1,
+    "packagesPrice": 29.95
+  },
+  {
+    "code": "HM",
+    "itemQuantity": 1,
+    "itemPrice": 7.95,
+    "packagesQuantity": 1,
+    "packagesPrice": 7.95
+  },
+  {
+    "code": "SS",
+    "itemQuantity": 1,
+    "itemPrice": 11.95,
+    "packagesQuantity": 3,
+    "packagesPrice": 35.849999999999994
+  }
+]

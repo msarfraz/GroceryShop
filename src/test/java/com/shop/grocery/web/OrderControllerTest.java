@@ -23,25 +23,41 @@ public class OrderControllerTest {
         RestAssured.port = port;
     }
 
-
+    @Order(2)
     @Test
     public void testGetOrder() {
-        when().get("api/v1/orders/1")
+        JsonPath expectedJson = new JsonPath(new File("src/test/resources/newOrderResponse.json"));
+        given()
+                .contentType(ContentType.JSON)
+                .when().get("api/v1/orders/1")
                 .then()
                 .assertThat()
                 .statusCode(200)
                 .and()
                 .contentType(ContentType.JSON)
                 .and()
-                .body("id", equalTo(1));
+                .body("", equalTo(expectedJson.get()));
     }
-
+    @Order(1)
     @Test
     public void testSaveOrder() {
-        JsonPath expectedJson = new JsonPath(new File("src/test/resources/newOrder.json"));
+        JsonPath expectedJson = new JsonPath(new File("src/test/resources/newOrderResponse.json"));
         given()
                 .contentType(ContentType.JSON)
-        .body("{}")
+        .body("[\n" +
+                "  {\n" +
+                "    \"code\": \"CE\",\n" +
+                "    \"quantity\": 10\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"code\": \"HM\",\n" +
+                "    \"quantity\": 14\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"code\": \"SS\",\n" +
+                "    \"quantity\": 3\n" +
+                "  }\n" +
+                "]")
                 .when().post("api/v1/orders/")
                 .then()
                 .assertThat()
